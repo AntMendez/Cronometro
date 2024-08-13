@@ -1,39 +1,98 @@
 
 /* *{box-sizing:border-box;margin:0;padding:0;} */
 
-body{
-    background-color: #c8ffb8;
+@font-face {
+    font-family: JetBrains;
+    src: url(/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: NeunMachina;
+    src: url(/fonts/Neue_Machina/NeueMachina-Regular.otf);
+}
+@font-face {
+    font-family: IbmPlex;
+    src: url(/fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf);
+}
+@font-face {
+    font-family: SpaceGrotesk ;
+    src: url(/fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf);
 }
 
-/* .cronometro{
-    width:400px;
-    height:200px;
-    top:50%;
-    left:50%;
-    position:relative;
-    margin-top:-50px;
-    margin-left:-100px;
-    text-align:center;
-}  */
-
-/* .boton{display:inline-block;width:60px;position:relative;} */
-
-.boton{
-    margin: 0 40px;
+body,html{
+    /* background-color: #e3f9d6; */
+    /* background-color:hsla(221,100%,7%,1);
+    background-image:
+    radial-gradient(at 82% 20%, hsla(185,100%,12%,1) 0px, transparent 50%),
+    radial-gradient(at 42% 90%, hsla(162,100%,12%,1) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(311,100%,12%,1) 0px, transparent 50%); */
+    background-color: #e5e5f7;
+    /* opacity: 0.4; */
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 29px ), repeating-linear-gradient( #444cf755, #444cf7 );
+    margin: 0px;
+    /* align-content: center; */
+    display: flex;
+    height:100%;
+    /* border: 5px solid; */
+    align-content: center;
+    flex-direction: column;
 }
 
-.cronometro{
+.parent{
+    background-color:rgba(255, 255, 255, 0.455) ;
+    backdrop-filter: blur(5px);
+    /* filter: blur(5px); */
+    border-radius: 30px;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+    height: 500px;
+    width: 850px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: auto;
-    border:solid;
-    border-color: solid black ;
-    border-radius: 20px;
-    width: 50%;
+}
+.cronometro{
+    margin: 0;
+    box-sizing: border-box;   
+    /* border: 1px solid rgb(143, 227, 17); */
+}
+
+.botones{
+    /* border: 1px solid black; */
+    padding-top:25px;
+    display: flex;
+    justify-content: space-around;
+}
+button{
+    border: 0;
+    border-radius: 10px;
+    height: 80px;
+    width: 160px;
+    font-family: SpaceGrotesk;
+    font-size: 37px;
+    /* font-weight: 500; */
+}
+button:first-child{
+    background-color: rgb(9, 92, 174);
+    color: rgb(195, 203, 247);
+}
+button:nth-child(2){
+    background-color: rgb(255, 230, 0);
+    color: rgb(99, 68, 0);
+}
+button:last-child{
+    background-color: rgb(255, 44, 44);
+    color: rgb(110, 0, 0);
 }
 
 #hms{
-    /* height:auto; */
-    /* padding:5px 0; */
-    font-size:80px;
-    color:#000;
-   font-family: monospace; 
+    /* border: 1px solid; */
+    font-size:160px;
+    /* color:#000; */
+    color: #6092de;
+    /* text-shadow:
+        0 0 7px #6875de,
+        0 0 10px #001f4b37,
+        0 0 10px rgb(0, 13, 31); */
+   font-family: IbmPlex; 
  }
