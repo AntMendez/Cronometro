@@ -54,7 +54,7 @@ body,html{
 .cronometro{
     margin: 0;
     box-sizing: border-box;   
-    /* border: 1px solid rgb(143, 227, 17); */
+    border: 1px solid rgb(143, 227, 17); 
 }
 
 .botones{
@@ -86,8 +86,9 @@ button:last-child{
 }
 
 #hms{
-    /* border: 1px solid; */
-    font-size:160px;
+    border: 1px solid; 
+    box-sizing: border-box;
+    font-size:180px;
     /* color:#000; */
     color: #6092de;
     /* text-shadow:
@@ -96,3 +97,10 @@ button:last-child{
         0 0 10px rgb(0, 13, 31); */
    font-family: IbmPlex; 
  }
+#ms{
+    border: 1px solid; 
+    box-sizing: border-box;
+    font-size:50px;
+    color: purple;
+    font-family: IbmPlex; 
+}
