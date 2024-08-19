@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizador</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+<body>
+    <section class="parent">
+		<div class="cronometro">
+			<p>Temporizador</p>
+			<div>
+				<span id="temp-hms"></span>
+			</div>
+			
+			<input type="number" id="input-h">
+			<input type="number" id="input-m">
+			<input type="number" id="input-s">
+			<div class="botones" id="botones">
+				<button id="start" class="boton temp-start">Start</button>
+				<!-- <button id="stop" class="boton temp-stop">Stop</button>
+				<button id="reset" class="boton temp-reset">Reset</button> -->
+			</div>
+		</div>
+	</section>
+    <!-- <div id="hora"></div> -->
+
+    <script>
+        // mostrarHora= document.getElementById("hora")
+        // // mostrarHora.innerHTML = hora.toLocaleDateString();
+        // setInterval (()=>{
+        //     let hora = new Date()
+        //     mostrarHora.innerHTML = hora.toLocaleTimeString();
+        // },1000 )
+        
+        window.onload = init
+        function init(){
+
+            document.getElementById("temp-hms").innerHTML="00:00:00";
+            h = 0;
+            m = 0;
+            s = 0;
+            document.querySelector(".temp-start").addEventListener("click",timer_start);
+            // document.querySelector(".temp-stop").addEventListener("click",timer_stop);
+            // document.querySelector(".temp-reset").addEventListener("click",timer_reset);
+        }
+        
+        function timer_start() {
+            document.getElementById("botones").innerHTML += '<button id="stop" class="boton temp-stop">Stop</button>';
+            document.getElementById("botones").innerHTML += '<button id="reset" class="boton temp-reset">Reset</button>';
+            document.querySelector(".temp-stop").addEventListener("click",timer_stop);
+            document.querySelector(".temp-reset").addEventListener("click",timer_reset);
+            const btn_start = document.getElementById('start')
+            btn_start.remove()
+
+            h = parseInt(document.getElementById("input-h").value) || 0;
+            m = parseInt(document.getElementById("input-m").value) || 0;
+            s = parseInt(document.getElementById("input-s").value) || 0;
+            timer_interval = setInterval(escribir_timer, 1000);
+            document.querySelector(".temp-start").removeEventListener("click", timer_start);
+        }
+        // function escribir_timer(){
+        //     s--;
+        //     if (s<0){m--,s=59};
+        //     if (m<0){h--,m=59};
+        //     if (h>0 & m==0 & s==0){alert("temporizador finalizado")}
+        //     console.log(h); console.log(m); console.log(s)
+        //     console.log("antes de varAux")
+        //     var sAux, mAux, hAux
+        //     if (s<10){sAux='0'+s;}else{sAux=s}
+        //     if (m<10){mAux='0'+m;}else{mAux=m}
+        //     if (h<10){hAux='0'+h;}else{hAux=h}
+        //     console.log(h); console.log(m); console.log(s)
+        //     document.getElementById('temp-hms').innerHTML= hAux + ':' + mAux + ':' + sAux;
+        // }
+        
+        function escribir_timer() {
+            if (s>0){
+                s--;
+            }else {
+                if (m>0){
+                    s=59;m--;
+                }else{
+                    if (h>0){
+                        h--;s=59;m=59;
+                    }else {
+                        alert("Timer Finalizado")
+                        timer_stop()
+                    }
+                }
+            }
+            let hAux = h < 10 ? '0' + h : h;
+            let mAux = m < 10 ? '0' + m : m;
+            let sAux = s < 10 ? '0' + s : s;
+
+            document.getElementById('temp-hms').innerHTML = hAux + ':' + mAux + ':' + sAux;
+        }
+
+        function timer_stop(){
+            clearInterval(timer_interval)
+            document.querySelector(".temp-start").addEventListener("click",timer_start);
+
+            document.querySelector(".temp-stop").removeEventListener("click",timer_stop)
+            document.querySelector(".temp-stop").addEventListener("click",timer_play)
+
+        }
+        function timer_play(){
+            document.querySelector(".temp-stop").removeEventListener("click",timer_play)
+            document.querySelector(".temp-stop").addEventListener("click",timer_stop)
+            timer_interval = setInterval(escribir_timer, 1000);
+        }
+
+        function timer_reset(){
+            document.getElementById("botones").innerHTML += '<button id="start" class="boton temp-start">Start</button>';
+            const btn_stop = document.getElementById('stop');
+            const btn_reset = document.getElementById('reset');
+            btn_reset.remove();
+            btn_stop.remove();
+
+            clearInterval(timer_interval)
+            document.getElementById("temp-hms").innerHTML="00:00:00";
+            document.querySelector(".temp-start").addEventListener("click",timer_start);
+        }
+
+
+    </script>
+
+    <footer>
+		<p><a target="_blank" href="https://github.com/AntMendez">amendezr@fi.uba.ar</a></p>
+		<p><a href="file:///C:/Users/Sabrina/Desktop/Cronometro/temporizador.html">Temporizador</a></p>
+		<p><a href="file:///C:/Users/Sabrina/Desktop/Cronometro/index.html">Cronometro</a></p>
+	</footer>
+
+    <!-- <script src="script.js" ></script> -->
+</body>
+</html>
