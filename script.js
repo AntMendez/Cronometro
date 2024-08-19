@@ -9,13 +9,14 @@ function init(){
     document.querySelector(".start").addEventListener("click",cronometrar);
     document.querySelector(".stop").addEventListener("click",parar);
     document.querySelector(".reset").addEventListener("click",reiniciar);
+    
 }   
+
 
 function cronometrar(){
     escribir();
     start_interval=setInterval(escribir,10);
     document.querySelector(".start").removeEventListener("click",cronometrar);
-
 }
 
 function escribir(){
