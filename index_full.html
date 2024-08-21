@@ -88,9 +88,9 @@
 		
             <div class="child forms">
                 <form id="inputs">
-                    <input type="number" id="input-h">
-                    <input type="number" id="input-m">
-                    <input type="number" id="input-s">
+                    <input min="0" type="number" id="input-h">
+                    <input min="0" type="number" id="input-m">
+                    <input min="0" type="number" id="input-s">
                 </form>
             </div>
 			
@@ -170,6 +170,7 @@
             if (is_running){
                 clearInterval(timer_interval)
                 document.getElementById('stop').textContent = "Play"
+                timer_reset()
             }else{
                 timer_interval = setInterval(escribir_timer, 1000);
                 document.getElementById('stop').textContent = "Stoop"
@@ -195,6 +196,7 @@
             // const form_inputs = document.getElementById('inputs')
             // form_inputs.innerHTML += '<input type="number" id="input-h"><input type="number" id="input-m"><input type="number" id="input-s">'
             document.getElementById("inputs").style.display='inline'
+            document.getElementById("inputs").reset()
         }
 
     </script>
@@ -203,8 +205,8 @@
 	<footer>
 		<div class="container_footer">
             <p><a target="_blank" href="https://github.com/AntMendez">amendezr@fi.uba.ar</a></p>
-            <p><a href="file:///C:/Users/Sabrina/Desktop/Cronometro/temporizador.html">Temporizador</a></p>
-            <p><a href="file:///C:/Users/Sabrina/Desktop/Cronometro/index.html">Cronometro</a></p>
+            <!-- <p><a href="file:///C:/Users/Sabrina/Desktop/Cronometro/temporizador.html">Temporizador</a></p>
+            <p><a href="file:///C:/Users/Sabrina/Desktop/Cronometro/index.html">Cronometro</a></p> -->
         </div>
 	</footer>
 
