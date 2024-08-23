@@ -7,30 +7,35 @@ body{
     background-color: aliceblue;
 }
 
-h1 { font-family: Helvetica; font-size: 3em; margin: 0;}
-p { font-family: Helvetica; }
+h1 { font-family: Montserrat,Helvetica; font-size: 4.5em; margin: 0;font-weight: 600;transition: 0.3s;}
+h1:hover{text-shadow: 3px 3px 10px rgb(80, 80, 80); }
+p { font-family: Montserrat, Helvetica; font-weight: 500; text-shadow: 3px 3px 5px black; }
 a { text-decoration: none; color: rgb(255, 255, 255); margin: 0px 10px;}
-a:hover{
-    color: black;
-}
+a:hover{ color: black;}
+
 button{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5em;
+    margin: 0px 10px;
     width: 100px;
     height: 50px;
-    /* padding: 10px 20px; */
-    border: 2px solid rgb(0, 81, 152);
     border-radius: 10px;
+    transition: 0.3s;
 }
+button:hover{ box-shadow: 0px 0px 10px rgb(0, 0, 0)}
+
 .botones .start,.temp-start {
+    border: 2px solid rgb(0, 81, 152);
     background-color: rgb(9, 92, 174);
     color: rgb(195, 203, 247);
 }
 .botones .stop,.temp-stop {
+    border: 2px solid rgb(143, 128, 0);
     background-color: rgb(255, 230, 0);
     color: rgb(99, 68, 0);
 }
 .botones .reset,.temp-reset {
+    border: 2px solid rgb(145, 0, 0);
     background-color: rgb(255, 44, 44);
     color: rgb(110, 0, 0);
 }
@@ -72,6 +77,11 @@ footer{
     border-radius: 10px;
     width: 100%;
     bottom: 0;
+    transition: 1s;
+}
+.container_footer:hover{
+    bottom: 5px;
+    /* bottom: 0px; */
 }
 
 
@@ -94,14 +104,25 @@ section .parent{
     align-items: center;
 }
 .child{
-/* border: 3px solid; */
+    /* border: 3px solid; */
     flex-grow: 1;
     align-items: center;
     display: flex;
 }
 
+#crono_display{
+    /* border: 3px solid greenyellow; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 #hms, #temp-hms{
-/* border: 1px solid;  */
+    align-self: start;
+    box-sizing: border-box;
+    /* border: 1px solid;  */
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
     font-size:5em;
     color: #28406d;
@@ -109,6 +130,8 @@ section .parent{
  }
 #ms{
     /* border: 1px solid;  */
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
     font-size:2em;
     color: rgb(125, 53, 125);

@@ -17,7 +17,7 @@
 			<div class="child titulo">
                 <h1>Cronometro</h1>
             </div>
-			<div class="child display">
+			<div class="child display" id="crono_display">
 				<span class="" id="hms"></span><span id="ms"></span> 
 			</div>
 			<div class="child botones">
@@ -134,6 +134,11 @@
             temp_m = parseInt(document.getElementById("input-m").value) || 0;
             temp_s = parseInt(document.getElementById("input-s").value) || 0;
             timer_interval = setInterval(escribir_timer, 1000);
+            let temp_hAux = temp_h < 10 ? '0' + temp_h : temp_h;
+            let temp_mAux = temp_m < 10 ? '0' + temp_m : temp_m;
+            let temp_sAux = temp_s < 10 ? '0' + temp_s : temp_s;
+
+            document.getElementById('temp-hms').innerHTML = temp_hAux + ':' + temp_mAux + ':' + temp_sAux;
             // document.querySelector(".temp-start").removeEventListener("click", timer_start);
 
             // const form_inputs = document.getElementById('inputs')
@@ -153,7 +158,7 @@
                         temp_h--;temp_s=59;temp_m=59;
                     }else {
                         alert("Timer Finalizado")
-                        timer_stop()
+                        timer_reset()
                     }
                 }
             }
@@ -170,11 +175,10 @@
             if (is_running){
                 clearInterval(timer_interval)
                 document.getElementById('stop').textContent = "Play"
-                timer_reset()
             }else{
                 timer_interval = setInterval(escribir_timer, 1000);
                 document.getElementById('stop').textContent = "Stoop"
-
+                
             }
             is_running=!is_running
 
