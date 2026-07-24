@@ -1,21 +1,22 @@
 window.onload = init;
+
 function init(){
     document.getElementById("hms").innerHTML="00:00:00";
     document.getElementById("ms").innerHTML=".00"
-    h = 0;
+    h = 0; // var globales
     m = 0;
     s = 0;
     ms = 0;
     document.querySelector(".start").addEventListener("click",cronometrar);
     document.querySelector(".stop").addEventListener("click",parar);
     document.querySelector(".reset").addEventListener("click",reiniciar);
-    
 }   
 
 
 function cronometrar(){
-    escribir();
-    start_interval=setInterval(escribir,10);
+    escribir(); // llamado para evitar primer delay inicial de 10ms
+    start_interval=setInterval(escribir,10); // var global
+    // en lugar de remover -> ocultar boton hasta pausar o reiniciar !!!
     document.querySelector(".start").removeEventListener("click",cronometrar);
 }
 
@@ -26,8 +27,8 @@ function escribir(){
     if (m>59){h++;s=0}
     if (h>24){alert('Pasaron mas de 24hs'),reiniciar()}
 
-    var sAux, mAux, hAux, msAux
-    if (ms<10){msAux="0"+ms}else{msAux=ms}
+    var sAux, mAux, hAux, msAux // var locales
+    if (ms<10){msAux="0"+ms}else{msAux=ms} // usar .toString().padStart(2,"0")
     if (s<10){sAux='0'+s;}else{sAux=s}
     if (m<10){mAux='0'+m;}else{mAux=m}
     if (h<10){hAux='0'+h;}else{hAux=h}
