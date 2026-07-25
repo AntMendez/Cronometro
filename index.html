@@ -1,53 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="styles.css">
-	<title>Cronometro</title>
-	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
-
-
+	<title>Cronómetro</title>
 </head>
 
 <body>
-	<section class="parent">
-		<div class="cronometro">
-			<p>Cronometro</p>
-			<div>
-				<span class="" id="hms"></span><span id="ms"></span>
-			</div>
-			<div class="botones">
-				<button class="boton start">Start</button>
-				<button class="boton stop">Stop</button>
-				<button class="boton reset">Reset</button>
-			</div>
-		</div>
-	</section>
+	<main class="parent">
 
-	<!-- <section class="parent">
-		<div class="cronometro">
-			<p>Temporizador</p>
-			<div>
-				<span id="temp-hms"></span>
+		<section class="cronometro" aria-label="Cronómetro">
+			<h2>Cronómetro - 24 hs</h2>
+
+			<div class="display">
+				<span id="hms">00:00:00</span><span id="ms">00</span>
+			</div>
+
+			<div class="botones">
+				<button class="boton start" type="button">Start</button>
+				<button class="boton stop" type="button">Stop</button>
+				<button class="boton reset" type="button">Reset</button>
+			</div>
+		</section>
+
+		<section class="temporizador oculto" aria-label="Temporizador">
+			<h2>Temporizador</h2>
+
+			<div class="display">
+				<span id="temp-hms">00:00:00</span>
+			</div>
+
+			<div class="inputs">
+				<div class="input-group">
+					<label for="input-h">Horas</label>
+					<input type="number" id="input-h" min="0" max="23" value="0">
+				</div>
+				<div class="input-group">
+					<label for="input-m">Minutos</label>
+					<input type="number" id="input-m" min="0" max="59" value="0">
+				</div>
+				<div class="input-group">
+					<label for="input-s">Segundos</label>
+					<input type="number" id="input-s" min="0" max="59" value="0">
+				</div>
 			</div>
 			
-			<input type="text" id="input-h">
-			<input type="text" id="input-m">
-			<input type="text" id="input-s">
-			<div class="botones">
-				<button class="boton start">Start</button>
-				<button class="boton stop">Stop</button>
-				<button class="boton reset">Reset</button>
+			<div class="botones" id="botones">
+				<button id="temp-start" class="boton temp-start" type="button">Start</button>
+				<button id="temp-stop" class="boton temp-stop oculto" type="button">Stop</button>
+				<button id="temp-reset" class="boton temp-reset oculto" type="button">Reset</button>
 			</div>
-		</div>
-	</section> -->
+			
+		</section>
+
+	</main>
 
 	<footer>
-		<p><a target="_blank" href="https://github.com/AntMendez">amendezr@fi.uba.ar</a></p>
-		<p><a href="temporizador.html">Temporizador</a></p>
-		<p><a href="index.html">Cronometro</a></p>
+		<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/AntMendez">amendezr@fi.uba.ar</a></p>
+		<button class="change_btn" type="button">Temporizador</button>
 	</footer>
 
 	<script src="script.js"></script>

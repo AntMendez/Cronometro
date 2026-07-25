@@ -11,7 +11,7 @@
 
 <body>
     <section class="parent">
-        <div class="cronometro">
+        <div class="temporizador">
             <p>Temporizador</p>
             <div>
                 <span id="temp-hms"></span>
@@ -63,20 +63,7 @@
             timer_interval = setInterval(escribir_timer, 1000);
             document.querySelector(".temp-start").removeEventListener("click", timer_start);
         }
-        // function escribir_timer(){
-        //     s--;
-        //     if (s<0){m--,s=59};
-        //     if (m<0){h--,m=59};
-        //     if (h>0 & m==0 & s==0){alert("temporizador finalizado")}
-        //     console.log(h); console.log(m); console.log(s)
-        //     console.log("antes de varAux")
-        //     var sAux, mAux, hAux
-        //     if (s<10){sAux='0'+s;}else{sAux=s}
-        //     if (m<10){mAux='0'+m;}else{mAux=m}
-        //     if (h<10){hAux='0'+h;}else{hAux=h}
-        //     console.log(h); console.log(m); console.log(s)
-        //     document.getElementById('temp-hms').innerHTML= hAux + ':' + mAux + ':' + sAux;
-        // }
+
 
         function escribir_timer() {
             if (s > 0) {
