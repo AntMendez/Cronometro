@@ -17,7 +17,7 @@ const elemMs = document.getElementById("ms");
 const btnStart = document.querySelector(".start");
 const btnStop = document.querySelector(".stop");
 const btnReset = document.querySelector(".reset");
-let onCrono = false;
+let cronoCorriendo = false;
 
 function init() {
     elemHms.textContent = "00:00:00";
@@ -29,7 +29,7 @@ function init() {
 }
 
 function cronometrar() {
-    onCrono = true;
+    cronoCorriendo = true;
     escribir(); // llamado para evitar el delay inicial de 10ms
     crono.interval = setInterval(escribir, 10);
     btnStart.classList.toggle("oculto")
@@ -56,10 +56,10 @@ function escribir() {
 
 function parar() {
     clearInterval(crono.interval);
-    if (onCrono) {
+    if (cronoCorriendo) {
         btnStart.classList.toggle("oculto")
     }
-    onCrono = false
+    cronoCorriendo = false
 }
 
 function reiniciar() {
@@ -71,24 +71,29 @@ function reiniciar() {
 
     elemHms.textContent = "00:00:00";
     elemMs.textContent = ".00";
-    if (onCrono) {
+    if (cronoCorriendo) {
         btnStart.classList.toggle("oculto")
     }
-    onCrono = false
+    cronoCorriendo = false
 }
 
 // --- Toggle Cronómetro / Temporizador ---
 
 const divCrono = document.querySelector(".cronometro");
 const divTemp = document.querySelector(".temporizador");
-const boton = document.querySelector(".change_btn");
+const btnCambioVista = document.querySelector(".change_btn");
 let tempOculto = divTemp.classList.contains("oculto");
 
-boton.addEventListener("click", () => {
+btnCambioVista.addEventListener("click", () => {
+    console.log(cronoCorriendo)
+    console.log(tempCorriendo)
+    if (cronoCorriendo || tempCorriendo) {
+        return
+    }
     divCrono.classList.toggle("oculto");
     divTemp.classList.toggle("oculto");
     tempOculto = !tempOculto;
-    boton.textContent = tempOculto ? "Temporizador" : "Cronómetro";
+    btnCambioVista.textContent = tempOculto ? "Temporizador" : "Cronómetro";
 });
 
 // -------------TEMPORIZADOR-------------
@@ -98,7 +103,6 @@ const temp = {
     m: 0,
     s: 0,
     interval: null,
-    corriendo: false,
 };
 
 const elemTempHms = document.getElementById("temp-hms");
@@ -108,7 +112,7 @@ const inputS = document.getElementById("input-s");
 const btnTempStart = document.querySelector(".temp-start");
 const btnTempStop = document.querySelector(".temp-stop");
 const btnTempReset = document.querySelector(".temp-reset");
-
+let tempCorriendo = false;
 function initTemporizador() {
     elemTempHms.textContent = "00:00:00";
     btnTempStart.addEventListener("click", timerStart);
@@ -126,15 +130,15 @@ function timerStart() {
         return;
     }
     // Validacion de mas. Arriba si no se convierte a numero se lo cambia a 0 por defecto.
-    // el "===" compara el valor y tipo. Se valida que se ingreso un numero y si es igual cero.
+    // el "===" compara el valor y tipo. Se valida que se ingreso un numero y si es igual a cero.
     if (temp.h === 0 && temp.m === 0 && temp.s === 0) {
         alert("Ingresá un tiempo mayor a 0");
         return;
     }
-    //---------------------------------------------- REVISAR...
+
     escribirTimer();
     temp.interval = setInterval(tick, 1000);
-    temp.corriendo = true;
+    tempCorriendo = true;
 
     btnTempStart.classList.add("oculto");
     btnTempStop.classList.remove("oculto");
@@ -154,7 +158,7 @@ function tick() {
         temp.s = 59;
     } else {
         clearInterval(temp.interval);
-        temp.corriendo = false;
+        tempCorriendo = false;
         alert("Timer finalizado");
         timerReset();
         return;
@@ -169,20 +173,20 @@ function escribirTimer() {
 
 // Un solo botón "Stop/Play" que alterna, en vez de reasignar listeners
 function timerToggle() {
-    if (temp.corriendo) {
+    if (tempCorriendo) {
         clearInterval(temp.interval);
-        temp.corriendo = false;
+        tempCorriendo = false;
         btnTempStop.textContent = "Play";
     } else {
         temp.interval = setInterval(tick, 1000);
-        temp.corriendo = true;
+        tempCorriendo = true;
         btnTempStop.textContent = "Stop";
     }
 }
 
 function timerReset() {
     clearInterval(temp.interval);
-    temp.corriendo = false;
+    tempCorriendo = false;
     temp.h = 0;
     temp.m = 0;
     temp.s = 0;
@@ -196,3 +200,20 @@ function timerReset() {
     btnTempStop.classList.add("oculto");
     btnTempReset.classList.add("oculto");
 }
+
+const root = document.documentElement;
+const themeToggle = document.querySelector(".theme_toggle");
+
+function aplicarTema(tema) {
+    root.setAttribute("data-theme", tema);
+    themeToggle.textContent = tema === "dark" ? "☀️" : "🌙";
+    localStorage.setItem("tema", tema);
+}
+
+const temaGuardado = localStorage.getItem("tema") || "light";
+aplicarTema(temaGuardado);
+
+themeToggle.addEventListener("click", () => {
+    const temaActual = root.getAttribute("data-theme");
+    aplicarTema(temaActual === "dark" ? "light" : "dark");
+});
