@@ -5,6 +5,12 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 	<title>Cronómetro</title>
 </head>
 
@@ -12,21 +18,24 @@
 	<main class="parent">
 
 		<section class="cronometro" aria-label="Cronómetro">
-			<h2>Cronómetro - 24 hs</h2>
+			<h2><i class="ti ti-stopwatch" aria-hidden="true"></i> Cronómetro - 24 hs</h2>
 
 			<div class="display">
 				<span id="hms">00:00:00</span><span id="ms">00</span>
 			</div>
 
 			<div class="botones">
-				<button class="boton start" type="button">Start</button>
-				<button class="boton stop" type="button">Stop</button>
-				<button class="boton reset" type="button">Reset</button>
+				<button class="boton start" type="button"><i class="ti ti-player-play" aria-hidden="true"></i>
+					Start</button>
+				<button class="boton stop" type="button"><i class="ti ti-player-pause" aria-hidden="true"></i>
+					Stop</button>
+				<button class="boton reset" type="button"><i class="ti ti-refresh" aria-hidden="true"></i>
+					Reset</button>
 			</div>
 		</section>
 
 		<section class="temporizador oculto" aria-label="Temporizador">
-			<h2>Temporizador</h2>
+			<h2><i class="ti ti-hourglass" aria-hidden="true"></i> Temporizador</h2>
 
 			<div class="display">
 				<span id="temp-hms">00:00:00</span>
@@ -48,9 +57,12 @@
 			</div>
 
 			<div class="botones" id="botones">
-				<button id="temp-start" class="boton temp-start" type="button">Start</button>
-				<button id="temp-stop" class="boton temp-stop oculto" type="button">Stop</button>
-				<button id="temp-reset" class="boton temp-reset oculto" type="button">Reset</button>
+				<button id="temp-start" class="boton temp-start" type="button"><i class="ti ti-player-play"
+						aria-hidden="true"></i> Start</button>
+				<button id="temp-stop" class="boton temp-stop oculto" type="button"><i class="ti ti-player-pause"
+						aria-hidden="true"></i> Stop</button>
+				<button id="temp-reset" class="boton temp-reset oculto" type="button"><i class="ti ti-refresh"
+						aria-hidden="true"></i> Reset</button>
 			</div>
 
 		</section>
@@ -59,8 +71,10 @@
 
 	<footer>
 		<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/AntMendez">amendezr@fi.uba.ar</a></p>
-		<button class="change_btn" type="button">Temporizador</button>
-		<button class="theme_toggle" type="button" aria-label="Cambiar tema">🌙</button>
+		<div>
+			<button class="change_btn" type="button">Temporizador</button>
+			<button class="theme_toggle" type="button" aria-label="Cambiar tema">🌙</button>
+		</div>
 	</footer>
 
 	<script src="script.js"></script>
