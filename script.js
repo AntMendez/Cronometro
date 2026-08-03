@@ -146,6 +146,7 @@ function timerStart() {
     btnTempReset.classList.remove("oculto");
 }
 
+const sonido = new Audio("resources/fahhh.mp3");
 function tick() {
     if (temp.s > 0) {
         temp.s--;
@@ -159,6 +160,9 @@ function tick() {
     } else {
         clearInterval(temp.interval);
         tempCorriendo = false;
+        sonido.play().catch((error) => {
+            console.warn("No se pudo reproducir el sonido:", error)
+        });
         alert("Timer finalizado");
         timerReset();
         return;
