@@ -77,15 +77,13 @@ body {
 
 .parent {
     display: grid;
-    place-items: center;
-    width: min(850px, 92vw);
+    /* place-items: center; */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    width: 92vw;
     margin: auto;
-    padding: 50px clamp(20px, 5vw, 60px);
-    background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    border: 2px solid var(--card-border);
-    border-radius: 25px;
-    transition: background var(--transition), border-color var(--transition);
+    border: 2px black solid;
 }
 
 .cronometro,
@@ -94,6 +92,12 @@ body {
     gap: 10px;
     justify-items: center;
     width: 100%;
+    padding: 50px clamp(20px, 5vw, 60px);
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--card-border);
+    border-radius: 25px;
+    transition: background var(--transition), border-color var(--transition);
 }
 
 .cronometro h2,
@@ -101,7 +105,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: clamp(24px, 4vw, 40px);
+    font-size: clamp(14px, 4vw, 200px);
     font-weight: 700;
     text-align: center;
 }
@@ -120,7 +124,7 @@ body {
 #hms,
 #temp-hms {
     font-family: var(--font-reloj);
-    font-size: clamp(56px, 10vw, 140px);
+    font-size: clamp(56px, 10vw, 90px);
     line-height: 1;
     letter-spacing: 2px;
     font-variant-numeric: tabular-nums;
@@ -177,9 +181,8 @@ input[type="number"]:focus {
 
 .botones {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 20px;
-    padding-top: 25px;
     width: 100%;
 }
 
@@ -234,6 +237,9 @@ footer {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between; */
     gap: 15px;
     margin: 10px;
     padding: 15px 20px;
