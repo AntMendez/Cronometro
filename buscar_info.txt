@@ -1,0 +1,4 @@
+
+- Diferencia entre los distintos selectores en js
+- unidades de medida css
+- cuando usar id y cuando class

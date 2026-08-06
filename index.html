@@ -2,8 +2,8 @@
 <html lang="es">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,17 +11,16 @@
 		href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
 		rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
-	<title>Cronómetro</title>
+	<title>CSS Grid</title>
 </head>
 
 <body>
-	<main class="parent">
-
-		<section class="cronometro" aria-label="Cronómetro">
-			<h2><i class="ti ti-stopwatch" aria-hidden="true"></i> Cronómetro - 24 hs</h2>
+	<main class="container">
+		<section class="crono" aria-label="Cronómetro">
+			<h2><i class="ti ti-stopwatch" aria-hidden="true"></i> Cronómetro</h2>
 
 			<div class="display">
-				<span id="hms">00:00:00</span><span id="ms">00</span>
+				<span id="hms">00:00:00</span><span id="ms">.00</span>
 			</div>
 
 			<div class="botones">
@@ -33,15 +32,15 @@
 					Reset</button>
 			</div>
 		</section>
-
-		<section class="temporizador " aria-label="Temporizador">
+		<section class="temp" aria-label="Temporizador">
 			<h2><i class="ti ti-hourglass" aria-hidden="true"></i> Temporizador</h2>
 
+			<!-- El display primero aparece oculto y luego aparece y se oculta el imput -->
 			<div class="display">
-				<span id="temp-hms">00:00:00</span>
+				<span class="oculto" id="temp-hms">00:00:00</span>
 			</div>
 
-			<div class="inputs">
+			<div class="temp-inputs">
 				<div class="input-group">
 					<label for="input-h">Horas</label>
 					<input type="number" id="input-h" min="0" max="23" value="0">
@@ -64,17 +63,15 @@
 				<button id="temp-reset" class="boton temp-reset oculto" type="button"><i class="ti ti-refresh"
 						aria-hidden="true"></i> Reset</button>
 			</div>
-
 		</section>
-
 	</main>
 
 	<footer>
-		<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/AntMendez">amendezr@fi.uba.ar</a></p>
-		<div class="footer-acciones">
-			<button class="change_btn" type="button">Temporizador</button>
-			<button class="theme_toggle" type="button" aria-label="Cambiar tema">🌙</button>
-		</div>
+		<section class="info">
+			<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/AntMendez"><i
+						class="ti ti-brand-github"></i></a></p>
+			<button class="theme_toggle" type="button" aria-label="Cambiar tema">
+		</section>
 	</footer>
 
 	<script src="script.js"></script>

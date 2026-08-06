@@ -4,6 +4,8 @@ window.onload = () => {
 }
 
 // Estado encapsulado — evita colisión con variables del temporizador
+
+// CRONOMETRO ini
 const crono = {
     h: 0,
     m: 0,
@@ -77,26 +79,9 @@ function reiniciar() {
     cronoCorriendo = false
 }
 
-// --- Toggle Cronómetro / Temporizador ---
+// CRONOMETRO fin
 
-const divCrono = document.querySelector(".cronometro");
-const divTemp = document.querySelector(".temporizador");
-const btnCambioVista = document.querySelector(".change_btn");
-let tempOculto = divTemp.classList.contains("oculto");
-
-btnCambioVista.addEventListener("click", () => {
-    console.log(cronoCorriendo)
-    console.log(tempCorriendo)
-    if (cronoCorriendo || tempCorriendo) {
-        return
-    }
-    divCrono.classList.toggle("oculto");
-    divTemp.classList.toggle("oculto");
-    tempOculto = !tempOculto;
-    btnCambioVista.textContent = tempOculto ? "Temporizador" : "Cronómetro";
-});
-
-// -------------TEMPORIZADOR-------------
+// TEMPORIZADOR ini
 
 const temp = {
     h: 0,
@@ -105,48 +90,57 @@ const temp = {
     interval: null,
 };
 
-const elemTempHms = document.getElementById("temp-hms");
+const display = document.getElementById("temp-hms");
 const inputH = document.getElementById("input-h");
 const inputM = document.getElementById("input-m");
 const inputS = document.getElementById("input-s");
+const inputsTemp = document.querySelector(".temp-inputs");
 const btnTempStart = document.querySelector(".temp-start");
 const btnTempStop = document.querySelector(".temp-stop");
 const btnTempReset = document.querySelector(".temp-reset");
 let tempCorriendo = false;
+
 function initTemporizador() {
-    elemTempHms.textContent = "00:00:00";
+    display.textContent = "00:00:00";
     btnTempStart.addEventListener("click", timerStart);
-    btnTempStop.addEventListener("click", timerToggle);
+    btnTempStop.addEventListener("click", timerStop);
     btnTempReset.addEventListener("click", timerReset);
 }
 
 function timerStart() {
-    temp.h = parseInt(inputH.value) || 0;
-    temp.m = parseInt(inputM.value) || 0;
-    temp.s = parseInt(inputS.value) || 0;
+    if (tempCorriendo) { return }
 
-    if (temp.h < 0 || temp.m < 0 || temp.s < 0) {
-        alert("No se permiten valores negativos");
-        return;
-    }
-    // Validacion de mas. Arriba si no se convierte a numero se lo cambia a 0 por defecto.
-    // el "===" compara el valor y tipo. Se valida que se ingreso un numero y si es igual a cero.
-    if (temp.h === 0 && temp.m === 0 && temp.s === 0) {
-        alert("Ingresá un tiempo mayor a 0");
-        return;
+    if (temp.h == 0 & temp.m == 0 & temp.s == 0) {
+        temp.h = parseInt(inputH.value) || 0;
+        temp.m = parseInt(inputM.value) || 0;
+        temp.s = parseInt(inputS.value) || 0;
+
+        if (temp.h < 0 || temp.m < 0 || temp.s < 0) {
+            alert("No se permiten valores negativos");
+            return;
+        }
+        // Validacion de mas. Arriba si no se convierte a numero se lo cambia a 0 por defecto.
+        // el "===" compara el valor y tipo. Se valida que se ingreso un numero y si es igual a cero.
+        if (temp.h === 0 && temp.m === 0 && temp.s === 0) {
+            alert("Ingresá un tiempo mayor a 0");
+            return;
+        }
     }
 
     escribirTimer();
     temp.interval = setInterval(tick, 1000);
     tempCorriendo = true;
 
+    inputsTemp.classList.add("oculto");
+    // console.log(inputsTemp.classList.add("oculto"));
     btnTempStart.classList.add("oculto");
+    display.classList.remove("oculto");
     btnTempStop.classList.remove("oculto");
-    btnTempStop.textContent = "Stop";
     btnTempReset.classList.remove("oculto");
+    console.log("click en start");
 }
 
-const sonido = new Audio("resources/fahhh.mp3");
+// const sonido = new Audio("resources/fahhh.mp3");
 function tick() {
     if (temp.s > 0) {
         temp.s--;
@@ -160,9 +154,9 @@ function tick() {
     } else {
         clearInterval(temp.interval);
         tempCorriendo = false;
-        sonido.play().catch((error) => {
-            console.warn("No se pudo reproducir el sonido:", error)
-        });
+        // sonido.play().catch((error) => {
+        //     console.warn("No se pudo reproducir el sonido:", error)
+        // });
         alert("Timer finalizado");
         timerReset();
         return;
@@ -172,45 +166,51 @@ function tick() {
 
 function escribirTimer() {
     const pad = (n) => n.toString().padStart(2, "0");
-    elemTempHms.textContent = `${pad(temp.h)}:${pad(temp.m)}:${pad(temp.s)}`;
+    display.textContent = `${pad(temp.h)}:${pad(temp.m)}:${pad(temp.s)}`;
 }
 
 // Un solo botón "Stop/Play" que alterna, en vez de reasignar listeners
-function timerToggle() {
+function timerStop() {
+    console.log("click en stop");
     if (tempCorriendo) {
         clearInterval(temp.interval);
         tempCorriendo = false;
-        btnTempStop.textContent = "Play";
+        btnTempStart.classList.remove("oculto");
+        btnTempStop.classList.add("oculto");
     } else {
-        temp.interval = setInterval(tick, 1000);
-        tempCorriendo = true;
-        btnTempStop.textContent = "Stop";
+        // NO DEBERIA ENTRAR NUNCA
+        console.log("error boton stop")
     }
 }
 
 function timerReset() {
+    console.log("click en reset");
     clearInterval(temp.interval);
     tempCorriendo = false;
     temp.h = 0;
     temp.m = 0;
     temp.s = 0;
 
-    elemTempHms.textContent = "00:00:00";
+    display.textContent = "00:00:00";
     inputH.value = 0;
     inputM.value = 0;
     inputS.value = 0;
 
     btnTempStart.classList.remove("oculto");
+    inputsTemp.classList.remove("oculto")
+    display.classList.add("oculto")
     btnTempStop.classList.add("oculto");
     btnTempReset.classList.add("oculto");
 }
 
 const root = document.documentElement;
 const themeToggle = document.querySelector(".theme_toggle");
+const sun = '<i class="ti ti-sun"></i>'
+const moon = '<i class="ti ti-moon"></i>'
 
 function aplicarTema(tema) {
     root.setAttribute("data-theme", tema);
-    themeToggle.textContent = tema === "dark" ? "☀️" : "🌙";
+    themeToggle.innerHTML = tema === "dark" ? sun : moon;
     localStorage.setItem("tema", tema);
 }
 
@@ -221,3 +221,5 @@ themeToggle.addEventListener("click", () => {
     const temaActual = root.getAttribute("data-theme");
     aplicarTema(temaActual === "dark" ? "light" : "dark");
 });
+
+// TEMPORIZADOR fin
