@@ -2,6 +2,8 @@
 Cronometro web
 https://antmendez.github.io/Cronometro/
 
+
+TO DO:
 [x] conectar logica a la vista
 [x] BUG IMPORTANTE: incio temporizador y antes que finalice presiono varias veces star -> entra en bucle de "alert"
 [x] Temporizador: input y display no aparecen a la vez
