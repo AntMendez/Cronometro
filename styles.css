@@ -245,7 +245,7 @@ h2 i {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 5px;
-    padding: 5px 5px;
+    padding: 2em 5px;
 
 }
 

@@ -19,22 +19,22 @@ const elemMs = document.getElementById("ms");
 const btnStart = document.querySelector(".start");
 const btnStop = document.querySelector(".stop");
 const btnReset = document.querySelector(".reset");
-let cronoCorriendo = false;
 
 function init() {
     elemHms.textContent = "00:00:00";
     elemMs.textContent = ".00";
 
-    btnStart.addEventListener("click", cronometrar);
-    btnStop.addEventListener("click", parar);
-    btnReset.addEventListener("click", reiniciar);
+    btnStart.addEventListener("click", cronoStart);
+    btnStop.addEventListener("click", cronoStop);
+    btnReset.addEventListener("click", cronoReset);
 }
 
-function cronometrar() {
-    cronoCorriendo = true;
+function cronoStart() {
     escribir(); // llamado para evitar el delay inicial de 10ms
     crono.interval = setInterval(escribir, 10);
-    btnStart.classList.toggle("oculto")
+    btnStart.classList.add("oculto");
+    btnStop.classList.remove("oculto");
+    btnReset.classList.remove("oculto");
 }
 
 function escribir() {
@@ -45,7 +45,7 @@ function escribir() {
     if (crono.m > 59) { crono.h++; crono.m = 0; }
     // cambio posterior: opcion 24hs o mas.
     if (crono.h >= 24) {
-        reiniciar();
+        cronoReset();
         alert("Pasaron más de 24hs");
         return;
     }
@@ -56,15 +56,13 @@ function escribir() {
     elemMs.textContent = `.${pad(crono.ms)}`;
 }
 
-function parar() {
+function cronoStop() {
     clearInterval(crono.interval);
-    if (cronoCorriendo) {
-        btnStart.classList.toggle("oculto")
-    }
-    cronoCorriendo = false
+    btnStart.classList.remove("oculto");
+    btnStop.classList.add("oculto");
 }
 
-function reiniciar() {
+function cronoReset() {
     clearInterval(crono.interval);
     crono.h = 0;
     crono.m = 0;
@@ -73,10 +71,9 @@ function reiniciar() {
 
     elemHms.textContent = "00:00:00";
     elemMs.textContent = ".00";
-    if (cronoCorriendo) {
-        btnStart.classList.toggle("oculto")
-    }
-    cronoCorriendo = false
+    btnStart.classList.remove("oculto");
+    btnStop.classList.add("oculto");
+    btnReset.classList.add("oculto");
 }
 
 // CRONOMETRO fin
@@ -132,12 +129,10 @@ function timerStart() {
     tempCorriendo = true;
 
     inputsTemp.classList.add("oculto");
-    // console.log(inputsTemp.classList.add("oculto"));
     btnTempStart.classList.add("oculto");
     display.classList.remove("oculto");
     btnTempStop.classList.remove("oculto");
     btnTempReset.classList.remove("oculto");
-    console.log("click en start");
 }
 
 // const sonido = new Audio("resources/fahhh.mp3");
@@ -169,7 +164,6 @@ function escribirTimer() {
     display.textContent = `${pad(temp.h)}:${pad(temp.m)}:${pad(temp.s)}`;
 }
 
-// Un solo botón "Stop/Play" que alterna, en vez de reasignar listeners
 function timerStop() {
     console.log("click en stop");
     if (tempCorriendo) {
@@ -184,7 +178,6 @@ function timerStop() {
 }
 
 function timerReset() {
-    console.log("click en reset");
     clearInterval(temp.interval);
     tempCorriendo = false;
     temp.h = 0;
