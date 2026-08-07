@@ -215,4 +215,22 @@ themeToggle.addEventListener("click", () => {
     aplicarTema(temaActual === "dark" ? "light" : "dark");
 });
 
+// botones inc y dec 
+
+function asignarBotonesInput(inputId, btnIncId, btnDecId) {
+    const inputText = document.getElementById(inputId);
+    const btnInc = document.getElementById(btnIncId);
+    const btnDec = document.getElementById(btnDecId);
+
+    btnInc.addEventListener("click", () => {
+        inputText.stepUp();
+    })
+    btnDec.addEventListener("click", () => {
+        inputText.stepDown();
+    })
+}
+asignarBotonesInput("input-h", "btn-inc-h", "btn-dec-h");
+asignarBotonesInput("input-m", "btn-inc-m", "btn-dec-m");
+asignarBotonesInput("input-s", "btn-inc-s", "btn-dec-s");
+
 // TEMPORIZADOR fin

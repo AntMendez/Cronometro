@@ -38,9 +38,10 @@ Luego abrí `index.html` en tu navegador.
 - [x] Temporizador: el input y el display no aparecen a la vez
 - [x] Cronómetro y temporizador muestran botones específicos
 - [ ] Vista responsive con ancho muy reducido: el botón Start del temporizador aparece debajo del footer
+        mejora responsive botones de input
 - [ ] Guardar en el navegador el estado de qué sección (cronómetro/temporizador) estaba activa, igual que el modo oscuro
 - [ ] Colores de los botones en modo oscuro
-- [ ] Inputs del temporizador con botones personalizados de incremento/decremento
+- [x] Inputs del temporizador con botones personalizados de incremento/decremento
 
 ## 📄 Licencia
 
